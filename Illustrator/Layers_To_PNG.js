@@ -1,5 +1,5 @@
 // Global Variables to use.
-var destFolder, sourceFolder, files, fileType, sourceDoc, targetFile, epsSaveOpts, doc, layers, vertScale, horzScale;
+var destFolder, sourceFolder, files, fileType, sourceDoc, targetFile, epsSaveOpts, doc, layers, vertScale, horzScale, width, height;
 
 // The folder where all of the Illustrator files are.
 sourceFolder = Folder.selectDialog( 'Select the folder with Illustrator files you want to convert to png', '~' );
@@ -24,7 +24,7 @@ function init(){
 
 				// Ask for destination folder.
 				destFolder = Folder.selectDialog('Select the folder you want to export files to', '~');
-
+				askForDimensions();
 				// Loop through files
 				for(var i = 0; i<files.length; i++){
 					// Saves the open file and properties to sourceDoc
@@ -40,14 +40,13 @@ function init(){
 					var top = bounds[1];
 
 					// Subtract the right bounds from the left bounds to get width
-					var width = bounds[2] - left;
+					 width = bounds[2] - left;
 
 					// Subtract the top bounds from the bottom bounds to get height;
-					var height = top - bounds[3];
+					height = top - bounds[3];
 
 					// Prompts user for width and height values in pxs
-					askForDimensions(width, height);
-
+					
 					// Hides all Layers
 					hideAllLayers();
 
@@ -76,7 +75,7 @@ function hideAllLayers(){
 
 
 // Function asks user for width and height in pxs
-function askForDimensions(width, height){
+function askForDimensions(){
 
 	// Create new dialog window
 	var w = new Window ("dialog", "Export PNG Scale");
@@ -143,16 +142,10 @@ function askForDimensions(width, height){
 	confirmButton.onClick = function(){
 
 		// Creates the scale for the height export
-		vscale = parseInt(heightField.text)/height;
+		vscale = parseInt(heightField.text)
 
 		// Creates the scale for the width export
-		hscale = parseInt(widthField.text)/width;
-
-		// Multiplies to increase outside of decimals
-		vertScale = vscale * 100;
-
-		// Multiples to increase outside of decimals
-		horzScale = hscale * 100;
+		hscale = parseInt(widthField.text)
 
 		// Closes the window
 		w.close()
@@ -220,6 +213,9 @@ function getNewName(layerName){
 
 // Function returns value of PNG settings
 function getPNGOptions(){
+	vertScale = (vscale/height) *100;
+	horzScale = (hscale/width) * 100;
+	
 	var pngSaveOpts = new ExportOptionsPNG24();
 	pngSaveOpts.antiAliasing = true;
 	pngSaveOpts.transparency = true;
