@@ -16,5 +16,5 @@ The file name will have the orginal Illustrator file name but tack on layer name
 
 
 # Roadmap
-- [ ] Create UI for allowing custom export size of PNG
+- [x] Create UI for allowing custom export size of PNG
 - [ ] Fix SVG naming bug.

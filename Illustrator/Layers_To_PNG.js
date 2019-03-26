@@ -182,31 +182,28 @@ function exportLayers(){
 }
 
 function getNewName(layerName){
-	// Local Variables;
-	var ext, docName, newName, saveInFile, docName;
-	
-	// Set document name
+	// Local Variables
+	var docName;
+
+	// Set docName to the source doc name
 	docName = sourceDoc.name;
-	
-	// New document extention
-	ext = '.png'; 
 
-	// Sets new name;
-	newName = "";
-	
-	// Loop through document names
-	for ( var i = 0 ; docName[i] != "." ; i++ )	{
-		
-		// Set newName to document name;
-		newName += docName[i];
-	}
-	
-	// Set newName to documentName + underscore + layerName + extention;
-	newName  +=  '_' + layerName + ext;
+	// Set newName to empty string
+	var newName = "";
 
-	// Save file to the dest folder with the new name;
-	saveInFile = new File( destFolder + '/' + newName );
+	// Get the last underscore in the document name
+	var underscore = docName.lastIndexOf('_');
 
+	// Set newName to the docName from the first char to the last underscore
+	newName += docName.substring(0,underscore);
+	
+	// Set newName to underscore + layerName
+	newName += '_' + layerName;
+
+	// Save in file at destFolder and newName
+	saveInFile = new File(destFolder + '/' + newName);
+	
+	// Return saveInFile that creates file at folder path
 	return saveInFile;
 }
 
