@@ -2,7 +2,7 @@
 var destFolder, sourceFolder, files, fileType, sourceDoc, svgSaveOpts, doc, layers;
 
 // The folder where all of the Illustrator files are.
-sourceFolder = Folder.selectDialog( 'Select the folder with Illustrator files you want to convert to png', '~' );
+sourceFolder = Folder.selectDialog( 'Select the folder with Illustrator files you want to convert to SVG', '~' );
 
 // Function that sets up the exporting process
 function init(){
