@@ -33,4 +33,3 @@ You will then be asked to select a folder where all of your exported files wish 
 # Roadmap
 - [x] Create UI for allowing custom export size of PNG
 - [x] Fix SVG naming bug.
-- [ ] Create UI for artboard custom export size of PNG
